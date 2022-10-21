@@ -13,7 +13,7 @@ int framesPerAnimation = 603;
 
 void setup() {
   size(800, 800, P3D);
-  // The file "bot.obj" must be in the data folder
+  // The ".obj" file must be in the data folder
   // of the current sketch to load successfully
   s = loadShape("aircraft747.obj");
   s.setFill(color(255,255,255));
@@ -24,7 +24,6 @@ void setup() {
   lines = loadStrings("spline-points.txt");
 
   for(String line : lines) {
-    // println(line);
     String[] tokens = splitTokens(line, " ");
     PVector point = new PVector(float(tokens[0]), float(tokens[1]), float(tokens[2]));
 
@@ -41,9 +40,11 @@ void drawCoordinateAxes() {
   // X red
   stroke(#cc0000);
   line(-axisEnd, 0, 0, axisEnd, 0, 0);
+
   // Y green
   stroke(#00cc00);
   line(0, -axisEnd, 0, 0, axisEnd, 0);
+
   // Z blue
   stroke(#0000cc);
   line(0, 0, -axisEnd, 0, 0, axisEnd);
@@ -130,8 +131,6 @@ void rotateAroundAxis(float angle, float x, float y, float z) {
   float cosa = cos(angle);
   float oneMinCosa = 1 - cosa;
 
-  // print(x*x+y*y+z*z);
-  
   float r00 = cosa + x*x*oneMinCosa;
   float r01 = x*y*oneMinCosa - z * sina;
   float r02 = x*z*oneMinCosa + y*sina;
@@ -187,14 +186,14 @@ void draw() {
   float angle = acos(tang.z / tang.mag());
 
   translate(pos.x, pos.y, pos.z);
-  rotateAroundAxis(angle, axis.x, axis.y, axis.z);
-  // translate(0, 1, 0);
-  // rotateX(PI * t * 0.2);
 
   stroke(#00ffff);
   strokeWeight(3);
   line(0, 0, 0, tang.x, tang.y, tang.z);
   stroke(#ffff00);
   line(0, 0, 0, axis.x, axis.y, axis.z);
+  
+  rotateAroundAxis(angle, axis.x, axis.y, axis.z);
+
   shape(s, 0, 0);
 }
