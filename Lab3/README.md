@@ -20,7 +20,7 @@ Open `Lab3.exe`.
 
 ##### Build it yourself
 
-Download and install (Processing)[https://processing.org/].
+Download and install [Processing](https://processing.org/).
 
 Pull the repository:
 
